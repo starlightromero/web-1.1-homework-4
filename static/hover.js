@@ -1,22 +1,12 @@
 const body = document.querySelector('body')
-const cards = document.querySelectorAll('.card')
 const items = document.getElementById('items')
 
-const isHover = e => e.parentElement.querySelector(':hover') === e
-
-const checkHover = () => {
-  let currentlyHovered = false
-  for (const c of cards) {
-    const hovered = isHover(c)
-    if (hovered) {
-      currentlyHovered = true
-      const src = c.querySelector('img').getAttribute('src')
-      body.style.backgroundImage = `url(${src})`
-    }
-  }
-  if (!currentlyHovered) {
-    body.style.backgroundImage = "url('')"
+const mouseOver = (e) => {
+  if (e.target.matches('.card')) {
+    const src = e.target.querySelector('img').getAttribute('src')
+    body.style.backgroundImage = `url(${src})`
+    console.log('over')
   }
 }
 
-items.addEventListener('mousemove', checkHover)
+items.addEventListener('mouseover', mouseOver)
