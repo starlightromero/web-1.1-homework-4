@@ -76,6 +76,10 @@ a.nav:hover, input.nav:hover, form input.submit:hover {
   background-color: #40B772;
 }
 
+a.nav:active, input.nav:active, form input.submit:active {
+  transform: scale(0.9);
+}
+
 .content {
   text-align: center;
   width: 100%;
