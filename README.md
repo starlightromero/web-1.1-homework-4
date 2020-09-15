@@ -19,7 +19,7 @@ source env/bin/activate
 install all packages listed in the requirements
 ```zsh
 pip3 install -r requirements.txt
-``
+```
 
 run the app
 ```zsh
