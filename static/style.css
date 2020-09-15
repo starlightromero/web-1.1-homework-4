@@ -5,6 +5,9 @@ body {
   padding: 0;
   padding-bottom: 100px;
   position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 main {
@@ -93,7 +96,8 @@ a.nav:active, input.nav:active, form input.submit:active {
 }
 
 div.card {
-  border: 1px solid #229954;
+  background-color: #fff;
+  border: 2px solid #229954;
   border-radius: 10px;
   height: 200px;
   margin: 30px;
@@ -130,6 +134,13 @@ div.card-content a {
 h1, h2, h3 {
   color: #229954;
   font-family: 'Homemade Apple', cursive;
+}
+
+.title {
+  background-color: #fff;
+  border-radius: 20px;
+  margin: 20px auto;
+  width: 250px;
 }
 
 form {
