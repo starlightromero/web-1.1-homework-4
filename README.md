@@ -1,3 +1,27 @@
 # Homework 4: Databases
 
-Follow the [instructions](https://make-school-courses.github.io/WEB-1.1-Web-Architecture/#/Assignments/04-Databases) to complete this assignment!
+## An app for keeping track of your plants and harvests.
+
+---
+
+### How to Run
+
+create a folder called env that will hold all installed packages
+```zsh
+python3 -m venv env
+```
+
+activate your virtual environment
+```zsh
+source env/bin/activate
+```
+
+install all packages listed in the requirements
+```zsh
+pip3 install -r requirements.txt
+``
+
+run the app
+```zsh
+python3 app.py
+```

@@ -2,55 +2,55 @@
 {% block content %}
 
 <main>
-        <h1>{{ plant.name }}</h1>
+  <h1>{{ plant.name }}</h1>
 
-        <img class="detail-photo" src="{{ plant.photo_url }}">
+  <img class="detail-photo" src="{{ plant.photo_url }}">
 
-        <section id="info">
-            <h3>Info</h3>
+  <section id="info">
+    <h3>Info</h3>
 
-            <strong>Date Planted</strong>
-            {{ plant.date_planted }}
-            <br><br>
+    <strong>Date Planted</strong>
+    {{ plant.date_planted }}
+    <br><br>
 
-            <strong>Variety</strong>
-            {{ plant.variety }}
-            <br><br>
+    <strong>Variety</strong>
+    {{ plant.variety }}
+    <br><br>
 
-            <a class="nav" href="/edit/{{ plant_id }}">Edit Plant</a><br><br>
-        </section>
+    <a class="nav" href="/edit/{{ plant_id }}">Edit Plant</a><br><br>
+  </section>
 
-        <form action="/harvest/{{ plant_id }}" method="POST">
-            <fieldset>
-                <legend>Harvested:</legend>
+  <form action="/harvest/{{ plant_id }}" method="POST">
+    <fieldset>
+      <legend>Harvested:</legend>
 
-                <label>
-                    Amount harvested
-                    <input type="number" value="0" min="0" name="harvested_amount" required>
-                </label>
+      <label>
+        Amount harvested
+        <input type="number" value="0" min="0" name="harvested_amount" required>
+      </label>
 
-                <label>
-                    Date harvested
-                    <input type="date" placeholder="mm/dd/yyyy" name="date_harvested" required>
-                </label>
+      <label>
+        Date harvested
+        <input type="date" placeholder="mm/dd/yyyy" name="date_harvested" required>
+      </label>
 
-                <input type="submit" class="submit" value="Harvest!">
-            </fieldset>
-        </form>
+      <input type="submit" class="submit" value="Harvest!">
+    </fieldset>
+  </form>
 
-        <section id="harvest-history">
-            <h3>Harvest History</h3>
+  <section id="harvest-history">
+    <h3>Harvest History</h3>
 
-            <ul>
-                {% for harvest in harvests %}
-                <li>{{ harvest.date }}: Harvested {{ harvest.quantity }} {{ harvest.name }}</li>
-                {% endfor %}
-            </ul>
-        </section>
+    <ul>
+      {% for harvest in harvests %}
+      <li>{{ harvest.date }}: Harvested {{ harvest.quantity }} {{ harvest.name }}</li>
+      {% endfor %}
+    </ul>
+  </section>
 
-        <form action="/delete/{{ plant_id }}" method='POST' class="delete-form" id="delete-form">
-            <input type="submit" class="nav" onclick="delete_modal()" value="Delete Plant">
-        </form>
+  <form action="/delete/{{ plant_id }}" method='POST' class="delete-form" id="delete-form">
+    <input type="submit" class="nav" onclick="delete_modal()" value="Delete Plant">
+  </form>
 </main>
 
 {% endblock content %}

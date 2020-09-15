@@ -24,6 +24,15 @@ p = inflect.engine()
 # #############################################################################
 
 
+# TODO: Sorting functionality with JS
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """Display page not found."""
+    print(e)
+    return render_template('404.html')
+
+
 @app.route('/')
 def plants_list():
     """Display the plants list page."""
