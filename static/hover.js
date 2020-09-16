@@ -1,12 +1,16 @@
 const body = document.querySelector('body')
-const items = document.getElementById('items')
+const card = document.querySelectorAll('.card')
 
-const mouseOver = (e) => {
-  if (e.target.matches('.card')) {
-    const src = e.target.querySelector('img').getAttribute('src')
-    body.style.backgroundImage = `url(${src})`
-    console.log('over')
-  }
+const mouseEnter = e => {
+  const src = e.target.querySelector('img').getAttribute('src')
+  body.style.backgroundImage = `url(${src})`
 }
 
-items.addEventListener('mouseover', mouseOver)
+const mouseLeave = e => {
+  body.style.backgroundImage = 'none'
+}
+
+for (const c of card) {
+  c.addEventListener('mouseenter', mouseEnter)
+  c.addEventListener('mouseleave', mouseLeave)
+}
