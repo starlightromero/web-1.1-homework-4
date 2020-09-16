@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main>
+  <section id="content">
+
+    <h1>Seeds</h1>
+
+    <div class="items" id="items">
+      {% for seed in seeds %}
+      <div class="card">
+        <a href="/seeds/{{ seed._id }}"><img src="{{ seed.photo_url }}"></a>
+        <div class="card-content">
+          <a href="/seeds/{{ seed._id }}">{{ seed.name }}</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </section>
+</main>
+
+{% endblock content %}

@@ -50,6 +50,12 @@ def about():
     return render_template('about.html')
 
 
+@app.route("/seeds")
+def seeds():
+    """Display the seeds page."""
+    return render_template('seeds.html')
+
+
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     """Display new plant page. Process data from the form."""
