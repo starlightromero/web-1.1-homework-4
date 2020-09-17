@@ -140,8 +140,9 @@ h1, h2, h3 {
 .title {
   background-color: #c3ffde;
   border-radius: 20px;
-  margin: 20px auto;
-  width: 250px;
+  font-size: 2rem;
+  margin: 20px 10px;
+  /* width: 250px; */
 }
 
 form {
