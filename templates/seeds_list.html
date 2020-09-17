@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block head %}
 
+<script src="/static/hover.js" defer></script>
 
 {% endblock %}
 
 {% block content %}
 
 <main>
-  <section id="content">
+  <div class="content">
 
     <h1 class="title">My Seeds</h1>
 
@@ -23,8 +24,7 @@
       </div>
       {% endfor %}
     </div>
-
-  </section>
+  </div>
 </main>
 
 {% endblock content %}

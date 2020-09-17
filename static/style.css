@@ -141,8 +141,9 @@ h1, h2, h3 {
   background-color: #c3ffde;
   border-radius: 20px;
   font-size: 2rem;
-  margin: 20px 10px;
-  /* width: 250px; */
+  height: 70px;
+  margin: 20px auto;
+  width: 250px;
 }
 
 form {
