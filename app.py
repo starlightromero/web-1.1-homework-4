@@ -83,7 +83,13 @@ def plant_create():
 
         return redirect(url_for('plant_detail', **context))
 
-    return render_template('plant_create.html')
+    seeds_data = seeds.find()
+
+    context = {
+        'seeds': seeds_data
+    }
+
+    return render_template('plant_create.html', **context)
 
 
 @app.route('/seed/create', methods=['GET', 'POST'])

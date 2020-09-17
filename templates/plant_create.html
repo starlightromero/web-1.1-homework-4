@@ -9,6 +9,15 @@
       <legend>Please fill out your plant's info:</legend>
 
       <label>
+        Choose a seed to plant:
+        <select name="seed_name">
+          {% for seed in seeds %}
+          <option value="{{ seed.name }}">{{ seed.name }} ({{ seed.variety }})</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>
         Plant's name:
         <input type="text" name="plant_name" required>
       </label>
