@@ -16,6 +16,7 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/plantsDatabase"
 mongo = PyMongo(app)
 plants = mongo.db.plants
 harvests = mongo.db.harvests
+seeds = mongo.db.seeds
 p = inflect.engine()
 
 
@@ -44,21 +45,26 @@ def plants_list():
     return render_template('plants_list.html', **context)
 
 
+@app.route("/seeds")
+def seeds_list():
+    """Display the seeds list page."""
+    seeds_data = seeds.find()
+
+    context = {
+        'seeds': seeds_data
+    }
+    return render_template('seeds_list.html', **context)
+
+
 @app.route('/about')
 def about():
     """Display the about page."""
     return render_template('about.html')
 
 
-@app.route("/seeds")
-def seeds():
-    """Display the seeds page."""
-    return render_template('seeds.html')
-
-
-@app.route('/create', methods=['GET', 'POST'])
-def create():
-    """Display new plant page. Process data from the form."""
+@app.route('/plant/create', methods=['GET', 'POST'])
+def plant_create():
+    """Display create plant page. Process data from the form."""
     if request.method == 'POST':
         new_plant = {
             'name': request.form['plant_name'],
@@ -75,15 +81,39 @@ def create():
             'plant_id': plant_id
         }
 
-        return redirect(url_for('detail', **context))
+        return redirect(url_for('plant_detail', **context))
 
-    return render_template('create.html')
+    return render_template('plant_create.html')
+
+
+@app.route('/seed/create', methods=['GET', 'POST'])
+def seed_create():
+    """Display create seed page. Process data from the form."""
+    if request.method == 'POST':
+        new_seed = {
+            'name': request.form['seed_name'],
+            'variety': request.form['variety'],
+            'photo_url': request.form['photo'],
+            'date_aquired': request.form['date_aquired']
+        }
+
+        seed = seeds.insert_one(new_seed)
+        seed_id = seed.inserted_id
+
+        context = {
+            'seed': seed,
+            'seed_id': seed_id
+        }
+
+        return redirect(url_for('seed_detail', **context))
+
+    return render_template('seed_create.html')
 
 
 @app.route('/plant/<plant_id>')
-def detail(plant_id):
+def plant_detail(plant_id):
     """Display the plant detail page & process data from the harvest form."""
-    plant_to_show = plants.find_one({'_id': ObjectId(plant_id)})
+    plant_to_show = plants.find_one_or_404({'_id': ObjectId(plant_id)})
     harvests_to_show = harvests.find({'plant_id': ObjectId(plant_id)})
 
     context = {
@@ -91,13 +121,25 @@ def detail(plant_id):
         'plant_id': plant_to_show['_id'],
         'harvests': harvests_to_show
     }
-    return render_template('detail.html', **context)
+    return render_template('plant_detail.html', **context)
+
+
+@app.route('/seed/<seed_id>')
+def seed_detail(seed_id):
+    """Display the plant detail page & process data from the harvest form."""
+    seed_to_show = seeds.find_one_or_404({'_id': ObjectId(seed_id)})
+
+    context = {
+        'seed': seed_to_show,
+        'seed_id': seed_to_show['_id']
+    }
+    return render_template('seed_detail.html', **context)
 
 
 @app.route('/harvest/<plant_id>', methods=['POST'])
 def harvest(plant_id):
     """Accept a POST request data for 1 harvest and insert into database."""
-    plant_to_harvest = plants.find_one({'_id': ObjectId(plant_id)})
+    plant_to_harvest = plants.find_one_or_404({'_id': ObjectId(plant_id)})
     name = p.plural(plant_to_harvest['name'].lower())
 
     new_harvest = {
@@ -112,9 +154,9 @@ def harvest(plant_id):
     return redirect(url_for('detail', plant_id=plant_id))
 
 
-@app.route('/edit/<plant_id>', methods=['GET', 'POST'])
-def edit(plant_id):
-    """Show the edit page and accept a POST request with edited data."""
+@app.route('/plant/edit/<plant_id>', methods=['GET', 'POST'])
+def plant_edit(plant_id):
+    """Show the plant edit page and accept a POST request with edited data."""
     if request.method == 'POST':
 
         plants.update_one(
@@ -128,24 +170,59 @@ def edit(plant_id):
                 }
             })
 
-        return redirect(url_for('detail', plant_id=plant_id))
+        return redirect(url_for('plant_detail', plant_id=plant_id))
 
-    plant_to_show = plants.find_one({'_id': ObjectId(plant_id)})
+    plant_to_show = plants.find_one_or_404({'_id': ObjectId(plant_id)})
 
     context = {
         'plant': plant_to_show
     }
 
-    return render_template('edit.html', **context)
+    return render_template('plant_edit.html', **context)
 
 
-@app.route('/delete/<plant_id>', methods=['POST'])
-def delete(plant_id):
+@app.route('/seed/edit/<seed_id>', methods=['GET', 'POST'])
+def seed_edit(seed_id):
+    """Show the seed edit page and accept a POST request with edited data."""
+    if request.method == 'POST':
+
+        seeds.update_one(
+            {'_id': ObjectId(seed_id)},
+            {
+                '$set': {
+                    'name': request.form['seed_name'],
+                    'variety': request.form['variety'],
+                    'photo_url': request.form['photo'],
+                    'date_aquired': request.form['date_aquired']
+                }
+            })
+
+        return redirect(url_for('seed_detail', seed_id=seed_id))
+
+    seed_to_show = seeds.find_one_or_404({'_id': ObjectId(seed_id)})
+
+    context = {
+        'seed': seed_to_show
+    }
+
+    return render_template('seed_edit.html', **context)
+
+
+@app.route('/plant/delete/<plant_id>', methods=['POST'])
+def plant_delete(plant_id):
     """Delete plant for given plant_id route."""
     plants.delete_one({'_id': ObjectId(plant_id)})
     harvests.delete_many({'plant_id': ObjectId(plant_id)})
 
     return redirect(url_for('plants_list'))
+
+
+@app.route('/seed/delete/<seed_id>', methods=['POST'])
+def seed_delete(seed_id):
+    """Delete seed for given seed_id route."""
+    seeds.delete_one({'_id': ObjectId(seed_id)})
+
+    return redirect(url_for('seeds_list'))
 
 
 if __name__ == '__main__':
