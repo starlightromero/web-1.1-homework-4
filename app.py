@@ -66,6 +66,9 @@ def about():
 def plant_create():
     """Display create plant page. Process data from the form."""
     if request.method == 'POST':
+        seed_id = request.form['seed']
+        seeds.delete_one({'_id': ObjectId(seed_id)})
+
         new_plant = {
             'name': request.form['plant_name'],
             'variety': request.form['variety'],

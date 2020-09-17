@@ -15,13 +15,15 @@
 
       <label>
         Choose a seed to plant:
-        <select name="seed_name">
+        <select name="seed">
           <option value="" selected disabled hidden>Seeds</option>
           {% for seed in seeds %}
-          <option value="{{ seed.name }}">{{ seed.name }} ({{ seed.variety }})</option>
+          <option value="{{ seed._id }}">{{ seed.name }} ({{ seed.variety }})</option>
           {% endfor %}
         </select>
       </label>
+
+      <!-- TODO>: validation of name and variety -->
 
       <label>
         Plant's name:
