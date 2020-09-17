@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block head %}
+
+
+{% endblock %}
+
+{% block content %}
+
+<main>
+  <section id="content">
+
+    <h1 class="title">My Seeds</h1>
+
+    <a href="/seed/create" class="nav">+ New Seed</a>
+
+    <div class="items" id="items">
+      {% for seed in seeds %}
+      <div class="card">
+        <a href="/seed/{{ seed._id }}"><img src="{{ seed.photo_url }}"></a>
+        <div class="card-content">
+          <a href="/seed/{{ seed._id }}">{{ seed.name }}</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </section>
+</main>
+
+{% endblock content %}
