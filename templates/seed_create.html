@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main>
+  <h1>New Seed</h1>
+
+  <form method='POST'>
+    <fieldset>
+      <legend>Please fill out your seed's info:</legend>
+
+      <label>
+        Seed's name:
+        <input type="text" name="seed_name" required>
+      </label>
+
+      <label>
+        Seed's variety:
+        <input type="text" name="variety" required>
+      </label>
+
+      <label>
+        Seed's photo URL:
+        <input type="url" name="photo" required>
+      </label>
+
+      <label>
+        Date aquired:
+        <input type="date" placeholder="mm/dd/yyyy" name="date_aquired" required>
+      </label>
+
+      <input type="submit" class="submit" value="Submit!">
+    </fieldset>
+  </form>
+</main>
+
+{% endblock content %}
