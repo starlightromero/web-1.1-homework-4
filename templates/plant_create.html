@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block head %}
+
+<script src="/static/create.js" defer></script>
+
+{% endblock%}
 {% block content %}
 
 <main>
@@ -11,6 +16,7 @@
       <label>
         Choose a seed to plant:
         <select name="seed_name">
+          <option value="" selected disabled hidden>Seeds</option>
           {% for seed in seeds %}
           <option value="{{ seed.name }}">{{ seed.name }} ({{ seed.variety }})</option>
           {% endfor %}
@@ -19,12 +25,12 @@
 
       <label>
         Plant's name:
-        <input type="text" name="plant_name" required>
+        <input type="text" name="plant_name" value="" readonly required>
       </label>
 
       <label>
         Plant's variety:
-        <input type="text" name="variety" required>
+        <input type="text" name="variety" value="" readonly required>
       </label>
 
       <label>
