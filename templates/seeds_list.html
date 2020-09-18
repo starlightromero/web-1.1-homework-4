@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" href="/static/dropdown.css">
 <script src="/static/hover.js" defer></script>
+<script src="/static/sortSeeds.js" defer></script>
 
 {% endblock %}
 
@@ -35,7 +36,9 @@
       <div class="card">
         <a href="/seed/{{ seed._id }}"><img src="{{ seed.photo_url }}"></a>
         <div class="card-content">
-          <a href="/seed/{{ seed._id }}">{{ seed.name }}</a>
+          <a href="/seed/{{ seed._id }}" data-date="{{ seed.date_aquired }}">
+            {{ seed.name }}
+          </a>
         </div>
       </div>
       {% endfor %}
