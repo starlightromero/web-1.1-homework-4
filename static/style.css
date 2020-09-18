@@ -73,7 +73,7 @@ footer {
 a.nav, input.nav, form input.submit {
   background-color: #229954;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   color: white;
   font-size: 20px;
   padding: 10px 15px;

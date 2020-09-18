@@ -31,10 +31,10 @@ select:focus {
   margin-top: 40px;
 }
 
-.sort-arrow {
+.sort-direction {
   background-color: #229954;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   color: white;
   cursor: pointer;
@@ -44,6 +44,6 @@ select:focus {
   text-decoration: none;
 }
 
-.sort-arrow:hover {
+.sort-direction:hover {
   background-color: #40B772;
 }

@@ -1,6 +1,7 @@
 const items = document.querySelector('.items')
 const cards = document.querySelectorAll('.card')
 const sortBy = document.querySelector('select[name="sort"]')
+const sortDirection = document.querySelector('.sort-direction')
 
 const plantArr = []
 
@@ -10,10 +11,10 @@ for (const card of cards) {
 
 const sort = sortFunc => {
   sortFunc()
-
   for (const plant of plantArr) {
     items.appendChild(plant)
   }
+  sortDirection.innerHTML = '↓'
 }
 
 const sortByName = () => {
@@ -48,5 +49,21 @@ sortBy.addEventListener('change', () => {
     sort(sortByDatePlanted)
   } else if (sortBy[index].value === 'by_harvest_amount') {
     sort(sortByHarvestAmount)
+  }
+})
+
+sortDirection.addEventListener('click', () => {
+  if (sortDirection.innerHTML === '↑') {
+    sortDirection.innerHTML = '↓'
+    plantArr.reverse()
+    for (const plant of plantArr) {
+      items.appendChild(plant)
+    }
+  } else if (sortDirection.innerHTML === '↓') {
+    sortDirection.innerHTML = '↑'
+    plantArr.reverse()
+    for (const plant of plantArr) {
+      items.appendChild(plant)
+    }
   }
 })
