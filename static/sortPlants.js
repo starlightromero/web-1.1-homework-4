@@ -53,14 +53,12 @@ sortBy.addEventListener('change', () => {
 })
 
 sortDirection.addEventListener('click', () => {
-  if (sortDirection.innerHTML === '↑') {
-    sortDirection.innerHTML = '↓'
-    plantArr.reverse()
-    for (const plant of plantArr) {
-      items.appendChild(plant)
+  if (sortDirection.innerHTML !== '-') {
+    if (sortDirection.innerHTML === '↑') {
+      sortDirection.innerHTML = '↓'
+    } else if (sortDirection.innerHTML === '↓') {
+      sortDirection.innerHTML = '↑'
     }
-  } else if (sortDirection.innerHTML === '↓') {
-    sortDirection.innerHTML = '↑'
     plantArr.reverse()
     for (const plant of plantArr) {
       items.appendChild(plant)
