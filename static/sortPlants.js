@@ -13,7 +13,6 @@ const sort = sortFunc => {
 
   for (const plant of plantArr) {
     items.appendChild(plant)
-    console.log(new Date(plant.querySelector('.card-content').childNodes[1].dataset.date))
   }
 }
 
