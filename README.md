@@ -11,6 +11,11 @@ Clone the repository
 git clone git@github.com:starlightromero/web-1.1-homework-4.git
 ````
 
+Change into the new directory
+```zsh
+cd web-1.1-homework-4
+```
+
 Create a folder called env that will hold all installed packages
 ```zsh
 python3 -m venv env
@@ -28,5 +33,5 @@ pip3 install -r requirements.txt
 
 Run the app
 ```zsh
-python3 app.py
+flask run
 ```
