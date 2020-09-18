@@ -24,41 +24,11 @@
     <br><br>
 
     <a class="nav" href="/seed/edit/{{ seed_id }}">Edit Seed</a><br><br>
+
+    <form action="/seed/delete/{{ seed_id }}" method='POST' class="delete-form" id="delete-form">
+      <input type="submit" class="nav" onclick="delete_modal()" value="Delete Seed">
+    </form>
   </section>
-
-  <form action="/harvest/{{ seed_id }}" method="POST">
-    <fieldset>
-      <legend>Harvested:</legend>
-
-      <label>
-        Amount harvested
-        <input type="number" value="0" min="0" name="harvested_amount" required>
-      </label>
-
-      <label>
-        Date harvested
-        <input type="date" placeholder="mm/dd/yyyy" name="date_harvested" required>
-      </label>
-
-      <input type="submit" class="submit" value="Harvest!">
-    </fieldset>
-  </form>
-
-  {#
-  <section id="harvest-history">
-    <h3>Harvest History</h3>
-
-    <ul>
-      {% for harvest in harvests %}
-      <li>{{ harvest.date }}: Harvested {{ harvest.quantity }} {{ harvest.name }}</li>
-      {% endfor %}
-    </ul>
-  </section>
-  #}
-
-  <form action="/seed/delete/{{ seed_id }}" method='POST' class="delete-form" id="delete-form">
-    <input type="submit" class="nav" onclick="delete_modal()" value="Delete Seed">
-  </form>
 </main>
 
 {% endblock content %}
