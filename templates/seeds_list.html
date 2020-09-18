@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block head %}
 
+<link rel="stylesheet" href="/static/dropdown.css">
 <script src="/static/hover.js" defer></script>
 
 {% endblock %}
@@ -19,6 +20,15 @@
     <h3>You currently have no seeds.</h3>
 
     {% else %}
+
+    <br />
+
+    <select name="sort" id="sort" class="sort">
+      <option value="" selected disabled hidden>Sort your seeds &nbsp;&nbsp;&nbsp;&nbsp; ▼</option>
+      <option value="by_name">By Name</option>
+      <option value="by_date_aquired">By Date Aquired</option>
+    </select>
+
 
     <div class="items" id="items">
       {% for seed in seeds %}
