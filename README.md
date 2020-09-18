@@ -6,6 +6,11 @@
 
 ### How to Run
 
+Clone the repository
+```zsh
+git clone git@github.com:starlightromero/web-1.1-homework-4.git
+````
+
 create a folder called env that will hold all installed packages
 ```zsh
 python3 -m venv env
