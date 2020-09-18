@@ -6,9 +6,7 @@ const submitBtn = document.querySelector('input[type=submit]')
 
 seed.addEventListener('change', () => {
   const text = seed.options[seed.selectedIndex].text
-  // TODO:  refine split to get all text except for last split
-  plantName.value = text.split(' ')[0]
-  console.log(plantName)
+  plantName.value = text.substring(0, text.indexOf('('))
   variety.value = text.match(/\((.*)\)/).pop()
 })
 
