@@ -50,6 +50,10 @@ nav a {
   text-decoration: none;
 }
 
+nav a:hover {
+  color: #c3ffde;
+}
+
 footer {
   align-content: center;
   align-items: center;
@@ -71,7 +75,7 @@ a.nav, input.nav, form input.submit {
   border: none;
   border-radius: 3px;
   color: white;
-  font-size: 1em;
+  font-size: 20px;
   padding: 10px 15px;
   text-decoration: none;
 }
