@@ -1,6 +1,6 @@
 # Homework 4: Databases
 
-## An app for keeping track of your plants and harvests.
+## An app for keeping track of your seeds, plants and harvests.
 
 ---
 
