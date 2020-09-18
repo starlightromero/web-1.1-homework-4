@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block head %}
 
+<link rel="stylesheet" href="/static/dropdown.css">
 <script src="/static/create.js" defer></script>
 
 {% endblock%}
@@ -13,17 +14,15 @@
     <fieldset>
       <legend>Please fill out your plant's info:</legend>
 
-      <label>
-        Choose a seed to plant:
-        <select name="seed">
-          <option value="" selected disabled hidden>Seeds</option>
-          {% for seed in seeds %}
-          <option value="{{ seed._id }}">{{ seed.name }} ({{ seed.variety }})</option>
-          {% endfor %}
-        </select>
+      <label for="seed" class="validate">
+        Please choose a seed
       </label>
-
-      <!-- TODO>: validation of name and variety -->
+      <select name="seed" id="seed">
+        <option value="" selected disabled hidden>Choose a seed to plant &nbsp;&nbsp;&nbsp;&nbsp; ▼</option>
+        {% for seed in seeds %}
+        <option value="{{ seed._id }}">{{ seed.name }} ({{ seed.variety }})</option>
+        {% endfor %}
+      </select>
 
       <label>
         Plant's name:
