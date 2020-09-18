@@ -7,8 +7,13 @@ select {
   border: none;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   color: white;
+  cursor: pointer;
   font-size: 20px;
   padding: 12px;
+}
+
+select:hover {
+  background-color: #40B772;
 }
 
 select:focus {
@@ -24,4 +29,21 @@ select:focus {
 
 .sort {
   margin-top: 40px;
+}
+
+.sort-arrow {
+  background-color: #229954;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 22px;
+  padding: 12px 15px;
+  text-decoration: none;
+}
+
+.sort-arrow:hover {
+  background-color: #40B772;
 }
