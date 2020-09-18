@@ -39,6 +39,13 @@ def plants_list():
     """Display the plants list page."""
     plants_data = plants.find()
 
+    # for plant in plants_data:
+    #     plant_harvest = harvests.find({'plant_id': plant['_id']})
+    #     quantity = 0
+    #     for single_harvest in plant_harvest:
+    #         quantity += int(single_harvest['quantity'])
+    #     print(quantity)
+
     context = {
         'plants': plants_data,
     }
