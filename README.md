@@ -41,4 +41,4 @@ Run the app
 flask run
 ```
 
-**Navigate to ![localhost:5000](http://localhost:5000)**
+**Navigate to localhost:5000**
