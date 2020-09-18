@@ -31,7 +31,14 @@ Install all packages listed in the requirements
 pip3 install -r requirements.txt
 ```
 
+Reactivate your virtual environment with the newly installed packages
+```zsh
+source env/bin/activate
+```
+
 Run the app
 ```zsh
 flask run
 ```
+
+**Navigate to ![localhost:5000](http://localhost:5000)**
