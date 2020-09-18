@@ -39,13 +39,6 @@ def plants_list():
     """Display the plants list page."""
     plants_data = plants.find()
 
-    # for plant in plants_data:
-    #     plant_harvest = harvests.find({'plant_id': plant['_id']})
-    #     quantity = 0
-    #     for single_harvest in plant_harvest:
-    #         quantity += int(single_harvest['quantity'])
-    #     print(quantity)
-
     context = {
         'plants': plants_data,
     }
@@ -80,7 +73,8 @@ def plant_create():
             'name': request.form['plant_name'],
             'variety': request.form['variety'],
             'photo_url': request.form['photo'],
-            'date_planted': request.form['date_planted']
+            'date_planted': request.form['date_planted'],
+            'harvest_amount': 0
         }
 
         plant = plants.insert_one(new_plant)
@@ -152,22 +146,32 @@ def seed_detail(seed_id):
     return render_template('seed_detail.html', **context)
 
 
-@app.route('/harvest/<plant_id>', methods=['POST'])
+@app.route('/plant/harvest/<plant_id>', methods=['POST'])
 def harvest(plant_id):
     """Accept a POST request data for 1 harvest and insert into database."""
     plant_to_harvest = plants.find_one_or_404({'_id': ObjectId(plant_id)})
+    quantity = int(request.form['harvested_amount'])
     name = p.plural(plant_to_harvest['name'].lower())
 
     new_harvest = {
-        'quantity': f"{request.form['harvested_amount']}",
+        'quantity': quantity,
         'name': name,
         'date': request.form['date_harvested'],
         'plant_id': plant_to_harvest['_id']
     }
 
-    harvests.insert_one(new_harvest)
+    total_harvest = plant_to_harvest['total_harvest'] + quantity
 
-    return redirect(url_for('detail', plant_id=plant_id))
+    harvests.insert_one(new_harvest)
+    plants.update_one(
+        {'_id': ObjectId(plant_id)},
+        {
+            '$set': {
+                'total_harvest': total_harvest
+            }
+        })
+
+    return redirect(url_for('plant_detail', plant_id=plant_id))
 
 
 @app.route('/plant/edit/<plant_id>', methods=['GET', 'POST'])

@@ -34,8 +34,8 @@ const sortByDatePlanted = () => {
 
 const sortByHarvestAmount = () => {
   plantArr.sort((a, b) => {
-    a = a.querySelector('.card-content').childNodes[1].dataset.harvests
-    b = b.querySelector('.card-content').childNodes[1].dataset.harvests
+    a = parseInt(a.querySelector('.card-content').childNodes[1].dataset.harvest)
+    b = parseInt(b.querySelector('.card-content').childNodes[1].dataset.harvest)
     return a === b ? 0 : (a > b ? 1 : -1)
   })
 }

@@ -36,7 +36,7 @@
       <div class="card">
         <a href="/plant/{{ plant._id }}"><img src="{{ plant.photo_url }}"></a>
         <div class="card-content">
-          <a href="/plant/{{ plant._id }}" data-date="{{ plant.date_planted }}" data-harvest="">
+          <a href="/plant/{{ plant._id }}" data-date="{{ plant.date_planted }}" data-harvest="{{ plant.total_harvest }}">
             {{ plant.name }}
           </a>
         </div>
