@@ -5,6 +5,9 @@ const seedLabel = document.querySelector('.validate')
 const submitBtn = document.querySelector('input[type=submit]')
 
 seed.addEventListener('change', () => {
+  if (seedLabel.style.display === 'block') {
+    seedLabel.style.display = 'none'
+  }
   const text = seed.options[seed.selectedIndex].text
   plantName.value = text.substring(0, text.indexOf('('))
   variety.value = text.match(/\((.*)\)/).pop()

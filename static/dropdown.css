@@ -20,11 +20,10 @@ select:focus {
   outline: none;
 }
 
-.validate {
+ .validate {
   color: red;
   display: none;
   font-size: 18px;
-  font-weight: bold;
 }
 
 .sort {
@@ -51,4 +50,5 @@ select:focus {
 .sort-action {
   color: red;
   display: none;
+  font-size: 18px;
 }
