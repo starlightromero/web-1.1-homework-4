@@ -47,3 +47,8 @@ select:focus {
 .sort-direction:hover {
   background-color: #40B772;
 }
+
+.sort-action {
+  color: red;
+  display: none;
+}
