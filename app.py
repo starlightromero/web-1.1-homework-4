@@ -74,7 +74,7 @@ def plant_create():
             'variety': request.form['variety'],
             'photo_url': request.form['photo'],
             'date_planted': request.form['date_planted'],
-            'harvest_amount': 0
+            'total_harvest': 0
         }
 
         plant = plants.insert_one(new_plant)
